@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BMI Calculator | ProMax Tools Hub</title>
+
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/main.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+<link rel="stylesheet" href="../../assets/css/animations.css">
+<link rel="stylesheet" href="../../assets/css/dark-mode.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        ProMax Tools
+    </div>
+
+    <nav class="nav">
+        <a href="../../index.html">Home</a>
+    </nav>
+
+    <button id="themeToggle">
+        Theme
+    </button>
+
+</header>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            BMI Calculator
+        </h1>
+
+        <p>
+            Calculate your Body Mass Index instantly.
+        </p>
+
+    </div>
+
+</section>
+
+<section
+style="
+max-width:900px;
+margin:auto;
+padding:40px;
+">
+
+    <label>
+        Weight (KG)
+    </label>
+
+    <br><br>
+
+    <input
+        type="number"
+        id="weight"
+        placeholder="Enter weight">
+
+    <br><br>
+
+    <label>
+        Height (CM)
+    </label>
+
+    <br><br>
+
+    <input
+        type="number"
+        id="height"
+        placeholder="Enter height">
+
+    <br><br>
+
+    <button id="calculateBtn">
+        Calculate BMI
+    </button>
+
+    <br><br>
+
+    <div id="results">
+
+        <h3>Your BMI Result</h3>
+
+        <p id="bmiValue">
+            --
+        </p>
+
+        <p id="bmiCategory">
+            --
+        </p>
+
+        <p id="healthyRange">
+            Healthy BMI Range: 18.5 - 24.9
+        </p>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p>
+        © <span id="currentYear">2026</span>
+        ProMax Tools Hub
+    </p>
+
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/darkmode.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/tools.js"></script>
+
+<script>
+
+document
+.getElementById(
+    "calculateBtn"
+)
+.addEventListener(
+    "click",
+    () => {
+
+        const weight =
+            parseFloat(
+                document
+                .getElementById(
+                    "weight"
+                ).value
+            );
+
+        const heightCm =
+            parseFloat(
+                document
+                .getElementById(
+                    "height"
+                ).value
+            );
+
+        if (
+            !weight ||
+            !heightCm
+        ) {
+
+            alert(
+                "Please enter valid values."
+            );
+
+            return;
+
+        }
+
+        const heightM =
+            heightCm / 100;
+
+        const bmi =
+            weight /
+            (
+                heightM *
+                heightM
+            );
+
+        const bmiRounded =
+            bmi.toFixed(1);
+
+        let category =
+            "";
+
+        if (bmi < 18.5) {
+
+            category =
+                "Underweight";
+
+        } else if (
+            bmi < 25
+        ) {
+
+            category =
+                "Normal Weight";
+
+        } else if (
+            bmi < 30
+        ) {
+
+            category =
+                "Overweight";
+
+        } else {
+
+            category =
+                "Obese";
+
+        }
+
+        document
+        .getElementById(
+            "bmiValue"
+        ).textContent =
+            "BMI: " +
+            bmiRounded;
+
+        document
+        .getElementById(
+            "bmiCategory"
+        ).textContent =
+            "Category: " +
+            category;
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
