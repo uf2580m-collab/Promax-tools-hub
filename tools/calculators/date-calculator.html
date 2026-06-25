@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Date Calculator | ProMax Tools Hub</title>
+
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/main.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+<link rel="stylesheet" href="../../assets/css/animations.css">
+<link rel="stylesheet" href="../../assets/css/dark-mode.css">
+<link rel="stylesheet" href="../../assets/css/tool-page.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+ProMax Tools
+</div>
+
+<nav class="nav">
+<a href="../../index.html">Home</a>
+</nav>
+
+<button id="themeToggle">
+Theme
+</button>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>
+Date Calculator
+</h1>
+
+<p>
+Calculate date differences and future or past dates.
+</p>
+
+</div>
+
+</section>
+
+<section class="tool-container">
+
+<div class="tool-card-box">
+
+<h2 class="tool-title">
+Date Difference Calculator
+</h2>
+
+<label class="tool-label">
+Start Date
+</label>
+
+<input
+type="date"
+id="startDate"
+class="tool-input">
+
+<label class="tool-label">
+End Date
+</label>
+
+<input
+type="date"
+id="endDate"
+class="tool-input">
+
+<button
+id="calculateDifference"
+class="tool-btn tool-btn-primary">
+Calculate Difference
+</button>
+
+<div
+id="differenceResult"
+class="result-box">
+
+Results will appear here
+
+</div>
+
+</div>
+
+<br>
+
+<div class="tool-card-box">
+
+<h2 class="tool-title">
+Add / Subtract Days
+</h2>
+
+<label class="tool-label">
+Base Date
+</label>
+
+<input
+type="date"
+id="baseDate"
+class="tool-input">
+
+<label class="tool-label">
+Days
+</label>
+
+<input
+type="number"
+id="daysToAdd"
+class="tool-input"
+placeholder="Enter days">
+
+<button
+id="addDaysBtn"
+class="tool-btn tool-btn-success">
+Add Days
+</button>
+
+<button
+id="subtractDaysBtn"
+class="tool-btn tool-btn-danger">
+Subtract Days
+</button>
+
+<div
+id="futureDateResult"
+class="result-box">
+
+Date result will appear here
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 ProMax Tools Hub
+</p>
+
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/darkmode.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/tools.js"></script>
+
+<script>
+
+/* DATE DIFFERENCE */
+
+document
+.getElementById(
+"calculateDifference"
+)
+.addEventListener(
+"click",
+() => {
+
+const start =
+new Date(
+document.getElementById(
+"startDate"
+).value
+);
+
+const end =
+new Date(
+document.getElementById(
+"endDate"
+).value
+);
+
+if(
+isNaN(start) ||
+isNaN(end)
+){
+
+alert(
+"Select both dates"
+);
+
+return;
+
+}
+
+const diff =
+Math.abs(
+end - start
+);
+
+const days =
+Math.floor(
+diff /
+(1000 * 60 * 60 * 24)
+);
+
+const weeks =
+(days / 7)
+.toFixed(2);
+
+const months =
+(days / 30.44)
+.toFixed(2);
+
+const years =
+(days / 365.25)
+.toFixed(2);
+
+document
+.getElementById(
+"differenceResult"
+)
+.innerHTML =
+`
+<b>Days:</b> ${days}<br>
+<b>Weeks:</b> ${weeks}<br>
+<b>Months:</b> ${months}<br>
+<b>Years:</b> ${years}
+`;
+
+}
+);
+
+/* ADD DAYS */
+
+document
+.getElementById(
+"addDaysBtn"
+)
+.addEventListener(
+"click",
+() => {
+
+const date =
+new Date(
+document.getElementById(
+"baseDate"
+).value
+);
+
+const days =
+parseInt(
+document.getElementById(
+"daysToAdd"
+).value
+);
+
+if(
+isNaN(date) ||
+isNaN(days)
+){
+
+alert(
+"Enter valid values"
+);
+
+return;
+
+}
+
+date.setDate(
+date.getDate() + days
+);
+
+document
+.getElementById(
+"futureDateResult"
+)
+.innerHTML =
+"<b>New Date:</b> " +
+date.toDateString();
+
+}
+);
+
+/* SUBTRACT DAYS */
+
+document
+.getElementById(
+"subtractDaysBtn"
+)
+.addEventListener(
+"click",
+() => {
+
+const date =
+new Date(
+document.getElementById(
+"baseDate"
+).value
+);
+
+const days =
+parseInt(
+document.getElementById(
+"daysToAdd"
+).value
+);
+
+if(
+isNaN(date) ||
+isNaN(days)
+){
+
+alert(
+"Enter valid values"
+);
+
+return;
+
+}
+
+date.setDate(
+date.getDate() - days
+);
+
+document
+.getElementById(
+"futureDateResult"
+)
+.innerHTML =
+"<b>New Date:</b> " +
+date.toDateString();
+
+}
+);
+
+</script>
+
+</body>
+
+</html>
