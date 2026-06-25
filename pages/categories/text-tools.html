@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Text Tools | ProMax Tools Hub</title>
+
+    <meta name="description"
+        content="Professional online text tools including Word Counter, Character Counter, Case Converter and more.">
+
+    <link rel="stylesheet"
+        href="../../assets/css/variables.css">
+
+    <link rel="stylesheet"
+        href="../../assets/css/main.css">
+
+    <link rel="stylesheet"
+        href="../../assets/css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- LOADER -->
+
+    <div id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            ProMax Tools
+        </div>
+
+        <nav class="nav">
+
+            <a href="../../index.html">
+                Home
+            </a>
+
+            <a href="#tools">
+                Text Tools
+            </a>
+
+        </nav>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Professional Text Tools
+            </h1>
+
+            <p>
+                Fast, secure and browser-based text utilities for writers, students, bloggers and professionals.
+            </p>
+
+            <div class="hero-search">
+
+                <input
+                    type="text"
+                    id="toolSearch"
+                    placeholder="Search Text Tool...">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TOOLS SECTION -->
+
+    <section id="tools">
+
+        <h2>
+            Available Text Tools
+        </h2>
+
+        <div class="tools-grid">
+
+            <a href="../../tools/text-tools/word-counter.html"
+                class="tool-card">
+
+                <h3>Word Counter</h3>
+
+                <p>
+                    Count words, characters, sentences and paragraphs instantly.
+                </p>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- FUTURE TOOLS -->
+
+    <section>
+
+        <h2>
+            Coming Soon
+        </h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                Character Counter
+            </div>
+
+            <div class="feature-card">
+                Case Converter
+            </div>
+
+            <div class="feature-card">
+                Remove Extra Spaces
+            </div>
+
+            <div class="feature-card">
+                Text Reverser
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CATEGORY STATS -->
+
+    <section>
+
+        <h2>
+            Category Overview
+        </h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <h3>100%</h3>
+
+                <p>
+                    Browser Based
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Free</h3>
+
+                <p>
+                    No Registration Required
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Fast</h3>
+
+                <p>
+                    Instant Results
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Secure</h3>
+
+                <p>
+                    Local Processing
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © <span id="currentYear"></span>
+            ProMax Tools Hub
+        </p>
+
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+
+    <script src="../../assets/js/ui.js"></script>
+
+    <script>
+
+        const searchInput =
+            document.getElementById("toolSearch");
+
+        const toolCards =
+            document.querySelectorAll(".tool-card");
+
+        if (searchInput) {
+
+            searchInput.addEventListener(
+                "input",
+                () => {
+
+                    const value =
+                        searchInput.value.toLowerCase();
+
+                    toolCards.forEach(card => {
+
+                        const text =
+                            card.textContent.toLowerCase();
+
+                        card.style.display =
+                            text.includes(value)
+                                ? "block"
+                                : "none";
+
+                    });
+
+                }
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
