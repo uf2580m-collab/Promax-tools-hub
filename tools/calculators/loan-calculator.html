@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loan Calculator | ProMax Tools Hub</title>
+
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/main.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+<link rel="stylesheet" href="../../assets/css/animations.css">
+<link rel="stylesheet" href="../../assets/css/dark-mode.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        ProMax Tools
+    </div>
+
+    <nav class="nav">
+        <a href="../../index.html">Home</a>
+    </nav>
+
+    <button id="themeToggle">
+        Theme
+    </button>
+
+</header>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Loan Calculator</h1>
+
+        <p>
+            Calculate monthly EMI, total interest and total payment.
+        </p>
+
+    </div>
+
+</section>
+
+<section
+style="
+max-width:900px;
+margin:auto;
+padding:40px;
+">
+
+    <label>Loan Amount</label>
+
+    <br><br>
+
+    <input
+        type="number"
+        id="loanAmount"
+        placeholder="100000">
+
+    <br><br>
+
+    <label>Annual Interest Rate (%)</label>
+
+    <br><br>
+
+    <input
+        type="number"
+        id="interestRate"
+        placeholder="10">
+
+    <br><br>
+
+    <label>Loan Duration (Years)</label>
+
+    <br><br>
+
+    <input
+        type="number"
+        id="loanYears"
+        placeholder="5">
+
+    <br><br>
+
+    <button id="calculateBtn">
+        Calculate Loan
+    </button>
+
+    <br><br>
+
+    <div id="results">
+
+        <h3>Loan Results</h3>
+
+        <p id="monthlyPayment">
+            --
+        </p>
+
+        <p id="totalInterest">
+            --
+        </p>
+
+        <p id="totalPayment">
+            --
+        </p>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p>
+        © <span id="currentYear">2026</span>
+        ProMax Tools Hub
+    </p>
+
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/darkmode.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/tools.js"></script>
+
+<script>
+
+document
+.getElementById("calculateBtn")
+.addEventListener(
+    "click",
+    () => {
+
+        const principal =
+            parseFloat(
+                document.getElementById(
+                    "loanAmount"
+                ).value
+            );
+
+        const annualRate =
+            parseFloat(
+                document.getElementById(
+                    "interestRate"
+                ).value
+            );
+
+        const years =
+            parseFloat(
+                document.getElementById(
+                    "loanYears"
+                ).value
+            );
+
+        if (
+            !principal ||
+            !annualRate ||
+            !years
+        ) {
+
+            alert(
+                "Please enter valid values."
+            );
+
+            return;
+
+        }
+
+        const monthlyRate =
+            annualRate / 100 / 12;
+
+        const totalMonths =
+            years * 12;
+
+        const emi =
+            principal *
+            (
+                monthlyRate *
+                Math.pow(
+                    1 + monthlyRate,
+                    totalMonths
+                )
+            ) /
+            (
+                Math.pow(
+                    1 + monthlyRate,
+                    totalMonths
+                ) - 1
+            );
+
+        const totalPayment =
+            emi * totalMonths;
+
+        const totalInterest =
+            totalPayment - principal;
+
+        document
+        .getElementById(
+            "monthlyPayment"
+        ).textContent =
+            "Monthly Payment: " +
+            emi.toFixed(2);
+
+        document
+        .getElementById(
+            "totalInterest"
+        ).textContent =
+            "Total Interest: " +
+            totalInterest.toFixed(2);
+
+        document
+        .getElementById(
+            "totalPayment"
+        ).textContent =
+            "Total Payment: " +
+            totalPayment.toFixed(2);
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
