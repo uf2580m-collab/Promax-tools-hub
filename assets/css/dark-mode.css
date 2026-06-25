@@ -1,0 +1,103 @@
+/* =====================================================
+   PROMAX TOOLS HUB
+   DARK / LIGHT MODE SYSTEM
+   VERSION 1.0
+   ===================================================== */
+
+
+/* =====================================================
+   LIGHT THEME
+   ===================================================== */
+
+[data-theme="light"] {
+
+    background: #f8fafc;
+
+    color: #0f172a;
+
+}
+
+
+/* =====================================================
+   LIGHT MODE BODY
+   ===================================================== */
+
+[data-theme="light"] body {
+
+    background: var(--bg-primary);
+
+    color: var(--text-primary);
+
+}
+
+
+/* =====================================================
+   LIGHT MODE HEADER
+   ===================================================== */
+
+[data-theme="light"] .header {
+
+    background: rgba(255,255,255,0.90);
+
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+
+}
+
+
+/* =====================================================
+   LIGHT MODE CARDS
+   ===================================================== */
+
+[data-theme="light"] .category-card,
+[data-theme="light"] .tool-card,
+[data-theme="light"] .feature-card {
+
+    background: #ffffff;
+
+    border: 1px solid rgba(0,0,0,0.08);
+
+}
+
+
+/* =====================================================
+   LIGHT MODE INPUTS
+   ===================================================== */
+
+[data-theme="light"] .hero-search input {
+
+    background: #ffffff;
+
+    border: 1px solid rgba(0,0,0,0.08);
+
+}
+
+
+/* =====================================================
+   LIGHT MODE FOOTER
+   ===================================================== */
+
+[data-theme="light"] footer {
+
+    border-top: 1px solid rgba(0,0,0,0.08);
+
+}
+
+
+/* =====================================================
+   THEME TRANSITIONS
+   ===================================================== */
+
+body,
+.header,
+.category-card,
+.tool-card,
+.feature-card,
+.hero-search input,
+footer {
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border 0.3s ease;
+
+}
