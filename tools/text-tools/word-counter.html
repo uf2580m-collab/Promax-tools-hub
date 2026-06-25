@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Word Counter | ProMax Tools Hub</title>
+
+    <meta name="description"
+        content="Free online Word Counter. Count words, characters, sentences, paragraphs, reading time and speaking time instantly.">
+
+    <link rel="stylesheet"
+        href="../../assets/css/variables.css">
+
+    <link rel="stylesheet"
+        href="../../assets/css/main.css">
+
+    <link rel="stylesheet"
+        href="../../assets/css/responsive.css">
+
+    <link rel="stylesheet"
+        href="../../assets/css/tool-page.css">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            ProMax Tools
+        </div>
+
+        <nav class="nav">
+
+            <a href="../../index.html">
+                Home
+            </a>
+
+            <a href="../../pages/categories/text-tools.html">
+                Text Tools
+            </a>
+
+        </nav>
+
+    </header>
+
+    <!-- TOOL CONTAINER -->
+
+    <main class="tool-container">
+
+        <div class="tool-card-box">
+
+            <h1 class="tool-title">
+                Word Counter
+            </h1>
+
+            <p class="tool-description">
+                Count words, characters, sentences, paragraphs,
+                reading time and speaking time instantly.
+            </p>
+
+            <label class="tool-label">
+                Enter Text
+            </label>
+
+            <textarea
+                id="textInput"
+                class="tool-textarea"
+                placeholder="Type or paste your text here..."></textarea>
+
+            <button
+                class="tool-btn tool-btn-primary"
+                id="copyBtn">
+
+                Copy Text
+
+            </button>
+
+            <button
+                class="tool-btn tool-btn-danger"
+                id="clearBtn">
+
+                Clear Text
+
+            </button>
+
+            <!-- STATS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <h3 id="wordCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Words
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3 id="characterCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Characters
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3 id="characterNoSpace">
+                        0
+                    </h3>
+
+                    <p>
+                        Characters (No Spaces)
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3 id="sentenceCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Sentences
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3 id="paragraphCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Paragraphs
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3 id="readingTime">
+                        0 Min
+                    </h3>
+
+                    <p>
+                        Reading Time
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3 id="speakingTime">
+                        0 Min
+                    </h3>
+
+                    <p>
+                        Speaking Time
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3 id="lineCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Lines
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © <span id="currentYear"></span>
+            ProMax Tools Hub
+        </p>
+
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+
+    <script src="../../assets/js/ui.js"></script>
+
+    <script>
+
+        const textInput =
+            document.getElementById(
+                "textInput"
+            );
+
+        const wordCount =
+            document.getElementById(
+                "wordCount"
+            );
+
+        const characterCount =
+            document.getElementById(
+                "characterCount"
+            );
+
+        const characterNoSpace =
+            document.getElementById(
+                "characterNoSpace"
+            );
+
+        const sentenceCount =
+            document.getElementById(
+                "sentenceCount"
+            );
+
+        const paragraphCount =
+            document.getElementById(
+                "paragraphCount"
+            );
+
+        const readingTime =
+            document.getElementById(
+                "readingTime"
+            );
+
+        const speakingTime =
+            document.getElementById(
+                "speakingTime"
+            );
+
+        const lineCount =
+            document.getElementById(
+                "lineCount"
+            );
+
+        function updateStats() {
+
+            const text =
+                textInput.value;
+
+            const words =
+                text.trim() === ""
+                ? []
+                : text.trim().split(/\s+/);
+
+            const wordTotal =
+                words.length;
+
+            const charTotal =
+                text.length;
+
+            const charWithoutSpaces =
+                text.replace(/\s/g, "")
+                .length;
+
+            const sentences =
+                text.match(/[.!?]+/g);
+
+            const sentenceTotal =
+                sentences
+                ? sentences.length
+                : 0;
+
+            const paragraphs =
+                text.trim() === ""
+                ? []
+                : text.split(/\n+/)
+                    .filter(
+                        p => p.trim() !== ""
+                    );
+
+            const paragraphTotal =
+                paragraphs.length;
+
+            const lines =
+                text === ""
+                ? 0
+                : text.split("\n").length;
+
+            const readMinutes =
+                Math.max(
+                    1,
+                    Math.ceil(
+                        wordTotal / 200
+                    )
+                );
+
+            const speakMinutes =
+                Math.max(
+                    1,
+                    Math.ceil(
+                        wordTotal / 130
+                    )
+                );
+
+            wordCount.textContent =
+                wordTotal;
+
+            characterCount.textContent =
+                charTotal;
+
+            characterNoSpace.textContent =
+                charWithoutSpaces;
+
+            sentenceCount.textContent =
+                sentenceTotal;
+
+            paragraphCount.textContent =
+                paragraphTotal;
+
+            readingTime.textContent =
+                readMinutes + " Min";
+
+            speakingTime.textContent =
+                speakMinutes + " Min";
+
+            lineCount.textContent =
+                lines;
+
+        }
+
+        textInput.addEventListener(
+            "input",
+            updateStats
+        );
+
+        document
+            .getElementById(
+                "copyBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    navigator.clipboard
+                        .writeText(
+                            textInput.value
+                        );
+
+                    alert(
+                        "Text Copied Successfully"
+                    );
+
+                }
+            );
+
+        document
+            .getElementById(
+                "clearBtn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    textInput.value = "";
+
+                    updateStats();
+
+                }
+            );
+
+        updateStats();
+
+    </script>
+
+</body>
+
+</html>
