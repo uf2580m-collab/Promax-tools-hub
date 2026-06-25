@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Percentage Calculator | ProMax Tools Hub</title>
+
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/main.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+<link rel="stylesheet" href="../../assets/css/animations.css">
+<link rel="stylesheet" href="../../assets/css/dark-mode.css">
+<link rel="stylesheet" href="../../assets/css/tool-page.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+ProMax Tools
+</div>
+
+<nav class="nav">
+<a href="../../index.html">Home</a>
+</nav>
+
+<button id="themeToggle">
+Theme
+</button>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>
+Percentage Calculator
+</h1>
+
+<p>
+Calculate percentages, increases, decreases and discounts.
+</p>
+
+</div>
+
+</section>
+
+<section class="tool-container">
+
+<div class="tool-card-box">
+
+<h2 class="tool-title">
+Percentage Of Number
+</h2>
+
+<input
+class="tool-input"
+type="number"
+id="percentValue"
+placeholder="Percentage">
+
+<input
+class="tool-input"
+type="number"
+id="numberValue"
+placeholder="Number">
+
+<button
+class="tool-btn tool-btn-primary"
+id="calculatePercent">
+Calculate
+</button>
+
+<div
+class="result-box"
+id="percentResult">
+Result will appear here
+</div>
+
+</div>
+
+<br>
+
+<div class="tool-card-box">
+
+<h2 class="tool-title">
+Percentage Increase
+</h2>
+
+<input
+class="tool-input"
+type="number"
+id="oldValue">
+
+<input
+class="tool-input"
+type="number"
+id="newValue">
+
+<button
+class="tool-btn tool-btn-success"
+id="increaseBtn">
+Calculate Increase
+</button>
+
+<div
+class="result-box"
+id="increaseResult">
+Result will appear here
+</div>
+
+</div>
+
+<br>
+
+<div class="tool-card-box">
+
+<h2 class="tool-title">
+Discount Calculator
+</h2>
+
+<input
+class="tool-input"
+type="number"
+id="originalPrice"
+placeholder="Original Price">
+
+<input
+class="tool-input"
+type="number"
+id="discountPercent"
+placeholder="Discount %">
+
+<button
+class="tool-btn tool-btn-danger"
+id="discountBtn">
+Calculate Discount
+</button>
+
+<div
+class="result-box"
+id="discountResult">
+Result will appear here
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 ProMax Tools Hub
+</p>
+
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/darkmode.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/tools.js"></script>
+
+<script>
+
+/* Percentage Of Number */
+
+document
+.getElementById(
+"calculatePercent"
+)
+.addEventListener(
+"click",
+() => {
+
+const percent =
+parseFloat(
+document.getElementById(
+"percentValue"
+).value
+);
+
+const number =
+parseFloat(
+document.getElementById(
+"numberValue"
+).value
+);
+
+if(
+isNaN(percent) ||
+isNaN(number)
+){
+return;
+}
+
+const result =
+(number * percent) / 100;
+
+document
+.getElementById(
+"percentResult"
+)
+.innerHTML =
+percent +
+"% of " +
+number +
+" = <b>" +
+result +
+"</b>";
+
+}
+);
+
+/* Increase */
+
+document
+.getElementById(
+"increaseBtn"
+)
+.addEventListener(
+"click",
+() => {
+
+const oldValue =
+parseFloat(
+document.getElementById(
+"oldValue"
+).value
+);
+
+const newValue =
+parseFloat(
+document.getElementById(
+"newValue"
+).value
+);
+
+if(
+isNaN(oldValue) ||
+isNaN(newValue)
+){
+return;
+}
+
+const increase =
+(
+(newValue - oldValue)
+/
+oldValue
+)
+* 100;
+
+document
+.getElementById(
+"increaseResult"
+)
+.innerHTML =
+increase.toFixed(2)
++
+"% Increase";
+
+}
+);
+
+/* Discount */
+
+document
+.getElementById(
+"discountBtn"
+)
+.addEventListener(
+"click",
+() => {
+
+const price =
+parseFloat(
+document.getElementById(
+"originalPrice"
+).value
+);
+
+const discount =
+parseFloat(
+document.getElementById(
+"discountPercent"
+).value
+);
+
+if(
+isNaN(price) ||
+isNaN(discount)
+){
+return;
+}
+
+const saved =
+price *
+discount /
+100;
+
+const finalPrice =
+price -
+saved;
+
+document
+.getElementById(
+"discountResult"
+)
+.innerHTML =
+"Final Price: <b>"
++
+finalPrice.toFixed(2)
++
+"</b><br>You Save: "
++
+saved.toFixed(2);
+
+}
+);
+
+</script>
+
+</body>
+</html>
