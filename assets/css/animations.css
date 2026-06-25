@@ -1,0 +1,195 @@
+/* =====================================================
+   PROMAX TOOLS HUB
+   ANIMATIONS SYSTEM
+   VERSION 1.0
+   ===================================================== */
+
+
+/* =====================================================
+   FADE IN
+   ===================================================== */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =====================================================
+   FADE UP
+   ===================================================== */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(40px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   FADE DOWN
+   ===================================================== */
+
+@keyframes fadeDown {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-40px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   SCALE IN
+   ===================================================== */
+
+@keyframes scaleIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.9);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   FLOATING EFFECT
+   ===================================================== */
+
+@keyframes floating {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   GLOW EFFECT
+   ===================================================== */
+
+@keyframes glow {
+
+    0% {
+
+        box-shadow:
+            0 0 0 rgba(79,70,229,0);
+
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 30px rgba(79,70,229,0.5);
+
+    }
+
+    100% {
+
+        box-shadow:
+            0 0 0 rgba(79,70,229,0);
+
+    }
+
+}
+
+
+/* =====================================================
+   ANIMATION CLASSES
+   ===================================================== */
+
+.fade-in {
+
+    animation:
+        fadeIn 1s ease forwards;
+
+}
+
+.fade-up {
+
+    animation:
+        fadeUp 1s ease forwards;
+
+}
+
+.fade-down {
+
+    animation:
+        fadeDown 1s ease forwards;
+
+}
+
+.scale-in {
+
+    animation:
+        scaleIn 0.8s ease forwards;
+
+}
+
+.floating {
+
+    animation:
+        floating 4s ease-in-out infinite;
+
+}
+
+.glow {
+
+    animation:
+        glow 3s infinite;
+
+}
