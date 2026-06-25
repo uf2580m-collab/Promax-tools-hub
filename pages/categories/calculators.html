@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculators | ProMax Tools Hub</title>
+
+    <meta name="description"
+        content="Professional online calculators including Age Calculator, BMI Calculator, Loan Calculator, GST/VAT Calculator, Percentage Calculator, Date Calculator and Unit Converter.">
+
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            ProMax Tools
+        </div>
+
+        <nav class="nav">
+
+            <a href="../../index.html">Home</a>
+
+            <a href="#calculators">Calculators</a>
+
+        </nav>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Professional Calculators
+            </h1>
+
+            <p>
+                Fast, accurate and mobile-friendly calculators for everyday use.
+            </p>
+
+            <div class="hero-search">
+
+                <input
+                    type="text"
+                    id="calculatorSearch"
+                    placeholder="Search Calculator...">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CALCULATORS -->
+
+    <section id="calculators">
+
+        <h2>Available Calculators</h2>
+
+        <div class="tools-grid">
+
+            <a href="../../tools/calculators/age-calculator.html" class="tool-card">
+                <h3>Age Calculator</h3>
+                <p>Calculate exact age in years, months and days.</p>
+            </a>
+
+            <a href="../../tools/calculators/bmi-calculator.html" class="tool-card">
+                <h3>BMI Calculator</h3>
+                <p>Check body mass index instantly.</p>
+            </a>
+
+            <a href="../../tools/calculators/date-calculator.html" class="tool-card">
+                <h3>Date Calculator</h3>
+                <p>Calculate date differences quickly.</p>
+            </a>
+
+            <a href="../../tools/calculators/gst-vat-calculator.html" class="tool-card">
+                <h3>GST / VAT Calculator</h3>
+                <p>Calculate taxes and pricing instantly.</p>
+            </a>
+
+            <a href="../../tools/calculators/loan-calculator.html" class="tool-card">
+                <h3>Loan Calculator</h3>
+                <p>Estimate monthly loan payments.</p>
+            </a>
+
+            <a href="../../tools/calculators/percentage-calculator.html" class="tool-card">
+                <h3>Percentage Calculator</h3>
+                <p>Percentage calculations made easy.</p>
+            </a>
+
+            <a href="../../tools/calculators/unit-converter.html" class="tool-card">
+                <h3>Unit Converter</h3>
+                <p>Convert units quickly and accurately.</p>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- QUICK STATS -->
+
+    <section>
+
+        <h2>Category Overview</h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <h3>7+</h3>
+                <p>Calculators</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>100%</h3>
+                <p>Browser Based</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Free</h3>
+                <p>No Signup Required</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Mobile</h3>
+                <p>Responsive Design</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © <span id="currentYear"></span> ProMax Tools Hub
+        </p>
+
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/ui.js"></script>
+
+    <script>
+
+        const searchInput =
+            document.getElementById("calculatorSearch");
+
+        const cards =
+            document.querySelectorAll(".tool-card");
+
+        searchInput.addEventListener("input", () => {
+
+            const value =
+                searchInput.value.toLowerCase();
+
+            cards.forEach(card => {
+
+                const text =
+                    card.textContent.toLowerCase();
+
+                card.style.display =
+                    text.includes(value)
+                        ? "block"
+                        : "none";
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
