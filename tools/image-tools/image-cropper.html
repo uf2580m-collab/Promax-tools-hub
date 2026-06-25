@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Image Cropper | ProMax Tools Hub</title>
+
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
+    <link rel="stylesheet" href="../../assets/css/animations.css">
+    <link rel="stylesheet" href="../../assets/css/dark-mode.css">
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+            ProMax Tools
+        </div>
+
+        <nav class="nav">
+
+            <a href="../../index.html">Home</a>
+            <a href="../../pages/categories/image-tools.html">Image Tools</a>
+
+        </nav>
+
+        <button id="themeToggle">
+            Theme
+        </button>
+
+    </header>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>Image Cropper</h1>
+
+            <p>
+                Crop images directly in your browser.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section
+        style="
+        max-width:900px;
+        margin:auto;
+        padding:40px;
+        ">
+
+        <input
+            type="file"
+            id="imageInput"
+            accept="image/*">
+
+        <br><br>
+
+        <label>X Position</label>
+        <br>
+        <input type="number" id="cropX" value="0">
+
+        <br><br>
+
+        <label>Y Position</label>
+        <br>
+        <input type="number" id="cropY" value="0">
+
+        <br><br>
+
+        <label>Crop Width</label>
+        <br>
+        <input type="number" id="cropWidth">
+
+        <br><br>
+
+        <label>Crop Height</label>
+        <br>
+        <input type="number" id="cropHeight">
+
+        <br><br>
+
+        <img
+            id="preview"
+            style="
+            max-width:100%;
+            display:none;
+            border-radius:16px;
+            ">
+
+        <br><br>
+
+        <button id="cropBtn">
+            Crop Image
+        </button>
+
+        <a
+            id="downloadBtn"
+            style="
+            display:none;
+            margin-left:10px;
+            ">
+            Download
+        </a>
+
+    </section>
+
+    <footer>
+
+        <p>
+            © <span id="currentYear">2026</span>
+            ProMax Tools Hub
+        </p>
+
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/darkmode.js"></script>
+    <script src="../../assets/js/ui.js"></script>
+    <script src="../../assets/js/tools.js"></script>
+
+    <script>
+
+        const imageInput =
+            document.getElementById(
+                "imageInput"
+            );
+
+        const preview =
+            document.getElementById(
+                "preview"
+            );
+
+        const cropX =
+            document.getElementById(
+                "cropX"
+            );
+
+        const cropY =
+            document.getElementById(
+                "cropY"
+            );
+
+        const cropWidth =
+            document.getElementById(
+                "cropWidth"
+            );
+
+        const cropHeight =
+            document.getElementById(
+                "cropHeight"
+            );
+
+        const cropBtn =
+            document.getElementById(
+                "cropBtn"
+            );
+
+        const downloadBtn =
+            document.getElementById(
+                "downloadBtn"
+            );
+
+        imageInput.addEventListener(
+            "change",
+            event => {
+
+                const file =
+                    event.target.files[0];
+
+                if (!file) return;
+
+                const reader =
+                    new FileReader();
+
+                reader.onload = e => {
+
+                    preview.src =
+                        e.target.result;
+
+                    preview.style.display =
+                        "block";
+
+                    const img =
+                        new Image();
+
+                    img.onload = () => {
+
+                        cropWidth.value =
+                            img.width;
+
+                        cropHeight.value =
+                            img.height;
+
+                    };
+
+                    img.src =
+                        e.target.result;
+
+                };
+
+                reader.readAsDataURL(
+                    file
+                );
+
+            }
+        );
+
+        cropBtn.addEventListener(
+            "click",
+            () => {
+
+                if (!preview.src)
+                    return;
+
+                const img =
+                    new Image();
+
+                img.onload = () => {
+
+                    const canvas =
+                        document.createElement(
+                            "canvas"
+                        );
+
+                    canvas.width =
+                        Number(
+                            cropWidth.value
+                        );
+
+                    canvas.height =
+                        Number(
+                            cropHeight.value
+                        );
+
+                    const ctx =
+                        canvas.getContext(
+                            "2d"
+                        );
+
+                    ctx.drawImage(
+                        img,
+                        Number(cropX.value),
+                        Number(cropY.value),
+                        Number(cropWidth.value),
+                        Number(cropHeight.value),
+                        0,
+                        0,
+                        Number(cropWidth.value),
+                        Number(cropHeight.value)
+                    );
+
+                    const output =
+                        canvas.toDataURL(
+                            "image/png"
+                        );
+
+                    downloadBtn.href =
+                        output;
+
+                    downloadBtn.download =
+                        "cropped-image.png";
+
+                    downloadBtn.style.display =
+                        "inline-block";
+
+                };
+
+                img.src =
+                    preview.src;
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
