@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unit Converter | ProMax Tools Hub</title>
+
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/main.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+<link rel="stylesheet" href="../../assets/css/animations.css">
+<link rel="stylesheet" href="../../assets/css/dark-mode.css">
+<link rel="stylesheet" href="../../assets/css/tool-page.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+ProMax Tools
+</div>
+
+<nav class="nav">
+<a href="../../index.html">Home</a>
+</nav>
+
+<button id="themeToggle">
+Theme
+</button>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>
+Unit Converter
+</h1>
+
+<p>
+Convert Length, Weight and Temperature instantly.
+</p>
+
+</div>
+
+</section>
+
+<section class="tool-container">
+
+<div class="tool-card-box">
+
+<label class="tool-label">
+Conversion Type
+</label>
+
+<select
+id="conversionType"
+class="tool-select">
+
+<option value="length">
+Length
+</option>
+
+<option value="weight">
+Weight
+</option>
+
+<option value="temperature">
+Temperature
+</option>
+
+</select>
+
+<label class="tool-label">
+Value
+</label>
+
+<input
+type="number"
+id="inputValue"
+class="tool-input"
+placeholder="Enter value">
+
+<label class="tool-label">
+From
+</label>
+
+<select
+id="fromUnit"
+class="tool-select">
+</select>
+
+<label class="tool-label">
+To
+</label>
+
+<select
+id="toUnit"
+class="tool-select">
+</select>
+
+<button
+id="convertBtn"
+class="tool-btn tool-btn-primary">
+Convert
+</button>
+
+<div
+id="result"
+class="result-box">
+
+Result will appear here
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 ProMax Tools Hub
+</p>
+
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/darkmode.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/tools.js"></script>
+
+<script>
+
+const conversionType =
+document.getElementById(
+"conversionType"
+);
+
+const fromUnit =
+document.getElementById(
+"fromUnit"
+);
+
+const toUnit =
+document.getElementById(
+"toUnit"
+);
+
+const units = {
+
+length: [
+"meter",
+"kilometer",
+"centimeter",
+"mile"
+],
+
+weight: [
+"kg",
+"gram",
+"pound"
+],
+
+temperature: [
+"celsius",
+"fahrenheit",
+"kelvin"
+]
+
+};
+
+function loadUnits() {
+
+const type =
+conversionType.value;
+
+fromUnit.innerHTML = "";
+toUnit.innerHTML = "";
+
+units[type].forEach(
+unit => {
+
+const option1 =
+document.createElement(
+"option"
+);
+
+option1.value = unit;
+option1.textContent = unit;
+
+const option2 =
+document.createElement(
+"option"
+);
+
+option2.value = unit;
+option2.textContent = unit;
+
+fromUnit.appendChild(
+option1
+);
+
+toUnit.appendChild(
+option2
+);
+
+}
+);
+
+}
+
+loadUnits();
+
+conversionType.addEventListener(
+"change",
+loadUnits
+);
+
+document
+.getElementById(
+"convertBtn"
+)
+.addEventListener(
+"click",
+() => {
+
+const value =
+parseFloat(
+document.getElementById(
+"inputValue"
+).value
+);
+
+if(isNaN(value)){
+
+alert(
+"Enter a valid value"
+);
+
+return;
+
+}
+
+const type =
+conversionType.value;
+
+const from =
+fromUnit.value;
+
+const to =
+toUnit.value;
+
+let result = value;
+
+if(type === "length"){
+
+const meters = {
+
+meter:1,
+kilometer:1000,
+centimeter:0.01,
+mile:1609.34
+
+};
+
+result =
+value *
+meters[from] /
+meters[to];
+
+}
+
+if(type === "weight"){
+
+const weights = {
+
+kg:1,
+gram:0.001,
+pound:0.453592
+
+};
+
+result =
+value *
+weights[from] /
+weights[to];
+
+}
+
+if(type === "temperature"){
+
+let celsius;
+
+if(from==="celsius")
+celsius=value;
+
+if(from==="fahrenheit")
+celsius=(value-32)*5/9;
+
+if(from==="kelvin")
+celsius=value-273.15;
+
+if(to==="celsius")
+result=celsius;
+
+if(to==="fahrenheit")
+result=(celsius*9/5)+32;
+
+if(to==="kelvin")
+result=celsius+273.15;
+
+}
+
+document
+.getElementById(
+"result"
+)
+.innerHTML =
+"<strong>"
++
+value
++
+" "
++
+from
++
+"</strong> = <strong>"
++
+result.toFixed(4)
++
+" "
++
+to
++
+"</strong>";
+
+}
+);
+
+</script>
+
+</body>
+
+</html>
