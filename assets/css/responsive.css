@@ -1,0 +1,167 @@
+/* =====================================================
+   PROMAX TOOLS HUB
+   RESPONSIVE STYLES
+   VERSION 1.0
+   ===================================================== */
+
+
+/* =====================================================
+   LARGE TABLETS
+   ===================================================== */
+
+@media (max-width: 1024px) {
+
+    .header {
+
+        padding: 18px 24px;
+
+    }
+
+    .hero h1 {
+
+        font-size: 3rem;
+
+    }
+
+}
+
+
+/* =====================================================
+   TABLETS
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    .header {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+    }
+
+    .nav {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+    }
+
+    .hero {
+
+        min-height: 70vh;
+
+        padding: 60px 20px;
+
+    }
+
+    .hero h1 {
+
+        font-size: 2.5rem;
+
+    }
+
+    .hero p {
+
+        font-size: 1rem;
+
+    }
+
+    .hero-search {
+
+        flex-direction: column;
+
+        align-items: center;
+
+    }
+
+    .hero-search input {
+
+        width: 100%;
+
+    }
+
+    .hero-search button {
+
+        width: 100%;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE DEVICES
+   ===================================================== */
+
+@media (max-width: 480px) {
+
+    .header {
+
+        padding: 15px;
+
+    }
+
+    .logo {
+
+        font-size: 1.2rem;
+
+    }
+
+    .nav {
+
+        gap: 12px;
+
+        font-size: 0.9rem;
+
+    }
+
+    .hero h1 {
+
+        font-size: 2rem;
+
+    }
+
+    .hero p {
+
+        font-size: 0.95rem;
+
+    }
+
+    .category-card,
+    .tool-card,
+    .feature-card {
+
+        padding: 20px;
+
+    }
+
+    footer {
+
+        padding: 25px 15px;
+
+    }
+
+}
+
+
+/* =====================================================
+   EXTRA SMALL DEVICES
+   ===================================================== */
+
+@media (max-width: 360px) {
+
+    .hero h1 {
+
+        font-size: 1.7rem;
+
+    }
+
+    .nav {
+
+        font-size: 0.8rem;
+
+    }
+
+}
