@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Age Calculator | ProMax Tools Hub</title>
+
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/main.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+<link rel="stylesheet" href="../../assets/css/animations.css">
+<link rel="stylesheet" href="../../assets/css/dark-mode.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        ProMax Tools
+    </div>
+
+    <nav class="nav">
+        <a href="../../index.html">Home</a>
+    </nav>
+
+    <button id="themeToggle">
+        Theme
+    </button>
+
+</header>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Age Calculator
+        </h1>
+
+        <p>
+            Calculate your exact age instantly.
+        </p>
+
+    </div>
+
+</section>
+
+<section
+style="
+max-width:900px;
+margin:auto;
+padding:40px;
+">
+
+    <label>
+        Date Of Birth
+    </label>
+
+    <br><br>
+
+    <input
+        type="date"
+        id="birthDate">
+
+    <br><br>
+
+    <button id="calculateBtn">
+        Calculate Age
+    </button>
+
+    <br><br>
+
+    <div id="results">
+
+        <h3>Your Results</h3>
+
+        <p id="ageResult">
+            --
+        </p>
+
+        <p id="monthsResult">
+            --
+        </p>
+
+        <p id="weeksResult">
+            --
+        </p>
+
+        <p id="daysResult">
+            --
+        </p>
+
+        <p id="birthdayResult">
+            --
+        </p>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p>
+        © <span id="currentYear">2026</span>
+        ProMax Tools Hub
+    </p>
+
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/darkmode.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/tools.js"></script>
+
+<script>
+
+document
+.getElementById(
+    "calculateBtn"
+)
+.addEventListener(
+    "click",
+    () => {
+
+        const birthDate =
+            document.getElementById(
+                "birthDate"
+            ).value;
+
+        if (!birthDate) {
+
+            alert(
+                "Please select your birth date."
+            );
+
+            return;
+
+        }
+
+        const dob =
+            new Date(
+                birthDate
+            );
+
+        const today =
+            new Date();
+
+        let years =
+            today.getFullYear() -
+            dob.getFullYear();
+
+        let months =
+            today.getMonth() -
+            dob.getMonth();
+
+        let days =
+            today.getDate() -
+            dob.getDate();
+
+        if (days < 0) {
+
+            months--;
+
+            const prevMonth =
+                new Date(
+                    today.getFullYear(),
+                    today.getMonth(),
+                    0
+                );
+
+            days +=
+                prevMonth.getDate();
+
+        }
+
+        if (months < 0) {
+
+            years--;
+
+            months += 12;
+
+        }
+
+        document
+        .getElementById(
+            "ageResult"
+        ).textContent =
+            "Age: " +
+            years +
+            " Years, " +
+            months +
+            " Months, " +
+            days +
+            " Days";
+
+        const diffTime =
+            today - dob;
+
+        const totalDays =
+            Math.floor(
+                diffTime /
+                (1000 * 60 * 60 * 24)
+            );
+
+        const totalWeeks =
+            Math.floor(
+                totalDays / 7
+            );
+
+        const totalMonths =
+            Math.floor(
+                totalDays / 30.44
+            );
+
+        document
+        .getElementById(
+            "monthsResult"
+        ).textContent =
+            "Total Months: " +
+            totalMonths;
+
+        document
+        .getElementById(
+            "weeksResult"
+        ).textContent =
+            "Total Weeks: " +
+            totalWeeks;
+
+        document
+        .getElementById(
+            "daysResult"
+        ).textContent =
+            "Total Days: " +
+            totalDays;
+
+        let nextBirthday =
+            new Date(
+                today.getFullYear(),
+                dob.getMonth(),
+                dob.getDate()
+            );
+
+        if (
+            nextBirthday < today
+        ) {
+
+            nextBirthday =
+                new Date(
+                    today.getFullYear() + 1,
+                    dob.getMonth(),
+                    dob.getDate()
+                );
+
+        }
+
+        const birthdayDiff =
+            Math.ceil(
+                (
+                    nextBirthday -
+                    today
+                ) /
+                (1000 * 60 * 60 * 24)
+            );
+
+        document
+        .getElementById(
+            "birthdayResult"
+        ).textContent =
+            "Next Birthday In: " +
+            birthdayDiff +
+            " Days";
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
