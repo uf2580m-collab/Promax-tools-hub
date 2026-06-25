@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Image To Base64 | ProMax Tools Hub</title>
+
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
+    <link rel="stylesheet" href="../../assets/css/animations.css">
+    <link rel="stylesheet" href="../../assets/css/dark-mode.css">
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+            ProMax Tools
+        </div>
+
+        <nav class="nav">
+
+            <a href="../../index.html">Home</a>
+            <a href="../../pages/categories/image-tools.html">Image Tools</a>
+
+        </nav>
+
+        <button id="themeToggle">
+            Theme
+        </button>
+
+    </header>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>Image To Base64 Converter</h1>
+
+            <p>
+                Convert any image into Base64 code instantly.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section
+        style="
+        max-width:1000px;
+        margin:auto;
+        padding:40px;
+        ">
+
+        <input
+            type="file"
+            id="imageInput"
+            accept="image/*">
+
+        <br><br>
+
+        <img
+            id="preview"
+            style="
+            max-width:100%;
+            display:none;
+            border-radius:16px;
+            ">
+
+        <br><br>
+
+        <textarea
+            id="base64Output"
+            rows="12"
+            style="
+            width:100%;
+            resize:vertical;
+            "
+            placeholder="Base64 output will appear here..."
+            readonly>
+        </textarea>
+
+        <br><br>
+
+        <button id="copyBtn">
+            Copy Base64
+        </button>
+
+    </section>
+
+    <footer>
+
+        <p>
+            © <span id="currentYear">2026</span>
+            ProMax Tools Hub
+        </p>
+
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/darkmode.js"></script>
+    <script src="../../assets/js/ui.js"></script>
+    <script src="../../assets/js/tools.js"></script>
+
+    <script>
+
+        const imageInput =
+            document.getElementById(
+                "imageInput"
+            );
+
+        const preview =
+            document.getElementById(
+                "preview"
+            );
+
+        const output =
+            document.getElementById(
+                "base64Output"
+            );
+
+        const copyBtn =
+            document.getElementById(
+                "copyBtn"
+            );
+
+        imageInput.addEventListener(
+            "change",
+            event => {
+
+                const file =
+                    event.target.files[0];
+
+                if (!file) return;
+
+                const reader =
+                    new FileReader();
+
+                reader.onload = e => {
+
+                    preview.src =
+                        e.target.result;
+
+                    preview.style.display =
+                        "block";
+
+                    output.value =
+                        e.target.result;
+
+                };
+
+                reader.readAsDataURL(
+                    file
+                );
+
+            }
+        );
+
+        copyBtn.addEventListener(
+            "click",
+            async () => {
+
+                if (!output.value)
+                    return;
+
+                try {
+
+                    await navigator
+                    .clipboard
+                    .writeText(
+                        output.value
+                    );
+
+                    alert(
+                        "Base64 copied successfully."
+                    );
+
+                } catch {
+
+                    alert(
+                        "Copy failed."
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
