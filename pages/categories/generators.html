@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Generators | ProMax Tools Hub</title>
+
+    <meta name="description"
+        content="Professional online generators including Password Generator and QR Generator. Fast, secure and completely browser-based.">
+
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            ProMax Tools
+        </div>
+
+        <nav class="nav">
+
+            <a href="../../index.html">Home</a>
+
+            <a href="#generators">Generators</a>
+
+        </nav>
+
+    </header>
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Professional Generators
+            </h1>
+
+            <p>
+                Generate passwords, QR codes and more with fast browser-based tools.
+            </p>
+
+            <div class="hero-search">
+
+                <input
+                    type="text"
+                    id="generatorSearch"
+                    placeholder="Search Generator Tool...">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- GENERATORS SECTION -->
+
+    <section id="generators">
+
+        <h2>Available Generators</h2>
+
+        <div class="tools-grid">
+
+            <a href="../../tools/generators/password-generator.html"
+                class="tool-card">
+
+                <h3>Password Generator</h3>
+
+                <p>
+                    Create strong and secure passwords instantly.
+                </p>
+
+            </a>
+
+            <a href="../../tools/generators/qr-generator.html"
+                class="tool-card">
+
+                <h3>QR Generator</h3>
+
+                <p>
+                    Generate QR codes for URLs, text and more.
+                </p>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- CATEGORY STATS -->
+
+    <section>
+
+        <h2>Category Overview</h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <h3>2+</h3>
+
+                <p>Generator Tools</p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>100%</h3>
+
+                <p>Browser Based</p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Free</h3>
+
+                <p>No Registration Required</p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Fast</h3>
+
+                <p>Instant Results</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- BENEFITS -->
+
+    <section>
+
+        <h2>Why Use Our Generators?</h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <h3>Secure</h3>
+
+                <p>
+                    All generation happens inside your browser.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Private</h3>
+
+                <p>
+                    No user data is stored on servers.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Mobile Friendly</h3>
+
+                <p>
+                    Optimized for phones, tablets and desktops.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Professional</h3>
+
+                <p>
+                    Built with the ProMax design system.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © <span id="currentYear"></span> ProMax Tools Hub
+        </p>
+
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+
+    <script src="../../assets/js/ui.js"></script>
+
+    <script>
+
+        const searchInput =
+            document.getElementById("generatorSearch");
+
+        const toolCards =
+            document.querySelectorAll(".tool-card");
+
+        searchInput.addEventListener("input", () => {
+
+            const value =
+                searchInput.value.toLowerCase();
+
+            toolCards.forEach(card => {
+
+                const text =
+                    card.textContent.toLowerCase();
+
+                card.style.display =
+                    text.includes(value)
+                        ? "block"
+                        : "none";
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
