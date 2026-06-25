@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GST & VAT Calculator | ProMax Tools Hub</title>
+
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/main.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+<link rel="stylesheet" href="../../assets/css/animations.css">
+<link rel="stylesheet" href="../../assets/css/dark-mode.css">
+<link rel="stylesheet" href="../../assets/css/tool-page.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+ProMax Tools
+</div>
+
+<nav class="nav">
+<a href="../../index.html">Home</a>
+</nav>
+
+<button id="themeToggle">
+Theme
+</button>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>
+GST & VAT Calculator
+</h1>
+
+<p>
+Calculate tax-inclusive and tax-exclusive prices instantly.
+</p>
+
+</div>
+
+</section>
+
+<section class="tool-container">
+
+<div class="tool-card-box">
+
+<label class="tool-label">
+Amount
+</label>
+
+<input
+type="number"
+id="amount"
+class="tool-input"
+placeholder="Enter amount">
+
+<label class="tool-label">
+GST / VAT Percentage
+</label>
+
+<input
+type="number"
+id="taxRate"
+class="tool-input"
+placeholder="Enter tax percentage">
+
+<button
+id="addTaxBtn"
+class="tool-btn tool-btn-primary">
+Add GST / VAT
+</button>
+
+<button
+id="removeTaxBtn"
+class="tool-btn tool-btn-danger">
+Remove GST / VAT
+</button>
+
+<div
+id="result"
+class="result-box">
+
+Results will appear here
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 ProMax Tools Hub
+</p>
+
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/darkmode.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/tools.js"></script>
+
+<script>
+
+const amountInput =
+document.getElementById(
+"amount"
+);
+
+const taxRateInput =
+document.getElementById(
+"taxRate"
+);
+
+const result =
+document.getElementById(
+"result"
+);
+
+document
+.getElementById(
+"addTaxBtn"
+)
+.addEventListener(
+"click",
+() => {
+
+const amount =
+parseFloat(
+amountInput.value
+);
+
+const rate =
+parseFloat(
+taxRateInput.value
+);
+
+if(
+isNaN(amount) ||
+isNaN(rate)
+){
+
+alert(
+"Please enter valid values."
+);
+
+return;
+
+}
+
+const tax =
+amount *
+rate /
+100;
+
+const total =
+amount + tax;
+
+result.innerHTML =
+
+`
+<b>Original Amount:</b> ${amount.toFixed(2)}<br>
+<b>Tax Amount:</b> ${tax.toFixed(2)}<br>
+<b>Total Amount:</b> ${total.toFixed(2)}
+`;
+
+}
+);
+
+document
+.getElementById(
+"removeTaxBtn"
+)
+.addEventListener(
+"click",
+() => {
+
+const total =
+parseFloat(
+amountInput.value
+);
+
+const rate =
+parseFloat(
+taxRateInput.value
+);
+
+if(
+isNaN(total) ||
+isNaN(rate)
+){
+
+alert(
+"Please enter valid values."
+);
+
+return;
+
+}
+
+const original =
+total /
+(
+1 + rate / 100
+);
+
+const tax =
+total - original;
+
+result.innerHTML =
+
+`
+<b>Original Amount:</b> ${original.toFixed(2)}<br>
+<b>Tax Amount:</b> ${tax.toFixed(2)}<br>
+<b>Total Amount:</b> ${total.toFixed(2)}
+`;
+
+}
+);
+
+</script>
+
+</body>
+
+</html>
