@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QR Generator | ProMax Tools Hub</title>
+
+<link rel="stylesheet" href="../../assets/css/variables.css">
+<link rel="stylesheet" href="../../assets/css/main.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+<link rel="stylesheet" href="../../assets/css/animations.css">
+<link rel="stylesheet" href="../../assets/css/dark-mode.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        ProMax Tools
+    </div>
+
+    <nav class="nav">
+
+        <a href="../../index.html">Home</a>
+
+    </nav>
+
+    <button id="themeToggle">
+        Theme
+    </button>
+
+</header>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            QR Code Generator
+        </h1>
+
+        <p>
+            Create QR codes instantly and download them.
+        </p>
+
+    </div>
+
+</section>
+
+<section
+style="
+max-width:900px;
+margin:auto;
+padding:40px;
+">
+
+    <label>
+        QR Type
+    </label>
+
+    <br><br>
+
+    <select id="qrType">
+
+        <option value="text">
+            Text
+        </option>
+
+        <option value="url">
+            URL
+        </option>
+
+        <option value="email">
+            Email
+        </option>
+
+        <option value="phone">
+            Phone
+        </option>
+
+        <option value="wifi">
+            WiFi
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <textarea
+        id="qrInput"
+        rows="5"
+        style="width:100%;"
+        placeholder="Enter content here...">
+    </textarea>
+
+    <br><br>
+
+    <label>
+        QR Size
+    </label>
+
+    <br>
+
+    <input
+        type="range"
+        id="qrSize"
+        min="150"
+        max="500"
+        value="250">
+
+    <span id="sizeValue">
+        250px
+    </span>
+
+    <br><br>
+
+    <button id="generateBtn">
+        Generate QR
+    </button>
+
+    <button id="downloadBtn">
+        Download
+    </button>
+
+    <br><br>
+
+    <div
+        id="qrcode"
+        style="
+        padding:20px;
+        display:inline-block;
+        background:white;
+        ">
+    </div>
+
+</section>
+
+<footer>
+
+    <p>
+        © <span id="currentYear">2026</span>
+        ProMax Tools Hub
+    </p>
+
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/darkmode.js"></script>
+<script src="../../assets/js/ui.js"></script>
+<script src="../../assets/js/tools.js"></script>
+
+<script>
+
+const qrContainer =
+    document.getElementById(
+        "qrcode"
+    );
+
+const generateBtn =
+    document.getElementById(
+        "generateBtn"
+    );
+
+const downloadBtn =
+    document.getElementById(
+        "downloadBtn"
+    );
+
+const qrInput =
+    document.getElementById(
+        "qrInput"
+    );
+
+const qrSize =
+    document.getElementById(
+        "qrSize"
+    );
+
+const sizeValue =
+    document.getElementById(
+        "sizeValue"
+    );
+
+let generatedCanvas = null;
+
+qrSize.addEventListener(
+    "input",
+    () => {
+
+        sizeValue.textContent =
+            qrSize.value + "px";
+
+    }
+);
+
+generateBtn.addEventListener(
+    "click",
+    () => {
+
+        const value =
+            qrInput.value.trim();
+
+        if (!value) {
+
+            alert(
+                "Please enter content."
+            );
+
+            return;
+
+        }
+
+        qrContainer.innerHTML = "";
+
+        new QRCode(
+            qrContainer,
+            {
+                text: value,
+                width: Number(qrSize.value),
+                height: Number(qrSize.value)
+            }
+        );
+
+        setTimeout(() => {
+
+            generatedCanvas =
+                qrContainer.querySelector(
+                    "canvas"
+                );
+
+        }, 300);
+
+    }
+);
+
+downloadBtn.addEventListener(
+    "click",
+    () => {
+
+        if (!generatedCanvas) {
+
+            alert(
+                "Generate QR first."
+            );
+
+            return;
+
+        }
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+        link.href =
+            generatedCanvas.toDataURL(
+                "image/png"
+            );
+
+        link.download =
+            "qrcode.png";
+
+        link.click();
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
