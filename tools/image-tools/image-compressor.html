@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Image Compressor | ProMax Tools Hub</title>
+
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
+    <link rel="stylesheet" href="../../assets/css/animations.css">
+    <link rel="stylesheet" href="../../assets/css/dark-mode.css">
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+            ProMax Tools
+        </div>
+
+        <nav class="nav">
+
+            <a href="../../index.html">Home</a>
+            <a href="../../pages/categories/image-tools.html">Image Tools</a>
+
+        </nav>
+
+        <button id="themeToggle">
+            Theme
+        </button>
+
+    </header>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Image Compressor
+            </h1>
+
+            <p>
+                Compress images directly in your browser.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section style="padding:40px; max-width:900px; margin:auto;">
+
+        <input
+            type="file"
+            id="imageInput"
+            accept="image/*">
+
+        <br><br>
+
+        <label>
+            Compression Quality:
+        </label>
+
+        <input
+            type="range"
+            id="quality"
+            min="10"
+            max="100"
+            value="70">
+
+        <span id="qualityValue">70%</span>
+
+        <br><br>
+
+        <div>
+
+            <img
+                id="preview"
+                style="
+                max-width:100%;
+                display:none;
+                border-radius:16px;
+                ">
+
+        </div>
+
+        <br>
+
+        <button id="compressBtn">
+            Compress Image
+        </button>
+
+        <a
+            id="downloadBtn"
+            style="
+            display:none;
+            margin-left:10px;
+            ">
+            Download
+        </a>
+
+    </section>
+
+    <footer>
+
+        <p>
+            © <span id="currentYear">2026</span>
+            ProMax Tools Hub
+        </p>
+
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/darkmode.js"></script>
+    <script src="../../assets/js/ui.js"></script>
+    <script src="../../assets/js/tools.js"></script>
+
+    <script>
+
+        const imageInput =
+            document.getElementById("imageInput");
+
+        const preview =
+            document.getElementById("preview");
+
+        const qualitySlider =
+            document.getElementById("quality");
+
+        const qualityValue =
+            document.getElementById("qualityValue");
+
+        const compressBtn =
+            document.getElementById("compressBtn");
+
+        const downloadBtn =
+            document.getElementById("downloadBtn");
+
+        let selectedFile = null;
+
+        qualitySlider.addEventListener(
+            "input",
+            () => {
+
+                qualityValue.textContent =
+                    qualitySlider.value + "%";
+
+            }
+        );
+
+        imageInput.addEventListener(
+            "change",
+            event => {
+
+                selectedFile =
+                    event.target.files[0];
+
+                if (!selectedFile) return;
+
+                const reader =
+                    new FileReader();
+
+                reader.onload = e => {
+
+                    preview.src =
+                        e.target.result;
+
+                    preview.style.display =
+                        "block";
+
+                };
+
+                reader.readAsDataURL(
+                    selectedFile
+                );
+
+            }
+        );
+
+        compressBtn.addEventListener(
+            "click",
+            () => {
+
+                if (!selectedFile) {
+
+                    alert(
+                        "Please select an image first."
+                    );
+
+                    return;
+
+                }
+
+                const img =
+                    new Image();
+
+                img.onload = () => {
+
+                    const canvas =
+                        document.createElement(
+                            "canvas"
+                        );
+
+                    const ctx =
+                        canvas.getContext("2d");
+
+                    canvas.width =
+                        img.width;
+
+                    canvas.height =
+                        img.height;
+
+                    ctx.drawImage(
+                        img,
+                        0,
+                        0
+                    );
+
+                    const quality =
+                        qualitySlider.value / 100;
+
+                    const compressed =
+                        canvas.toDataURL(
+                            "image/jpeg",
+                            quality
+                        );
+
+                    downloadBtn.href =
+                        compressed;
+
+                    downloadBtn.download =
+                        "compressed-image.jpg";
+
+                    downloadBtn.style.display =
+                        "inline-block";
+
+                };
+
+                img.src =
+                    preview.src;
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
