@@ -1,0 +1,302 @@
+/* =====================================================
+   PROMAX TOOL PAGE SYSTEM
+   VERSION 1.0
+   ===================================================== */
+
+
+/* TOOL CONTAINER */
+
+.tool-container {
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 40px 20px;
+
+}
+
+
+/* TOOL CARD */
+
+.tool-card-box {
+
+    background: rgba(255,255,255,0.05);
+
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 24px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.15);
+
+}
+
+
+/* FORM LABELS */
+
+.tool-label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+}
+
+
+/* INPUTS */
+
+.tool-input,
+.tool-select,
+.tool-textarea {
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border-radius: 14px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    outline: none;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+
+    margin-bottom: 18px;
+
+}
+
+
+.tool-input:focus,
+.tool-select:focus,
+.tool-textarea:focus {
+
+    transform: translateY(-2px);
+
+}
+
+
+/* TEXTAREA */
+
+.tool-textarea {
+
+    min-height: 140px;
+
+    resize: vertical;
+
+}
+
+
+/* BUTTONS */
+
+.tool-btn {
+
+    padding: 14px 22px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    margin-right: 10px;
+
+    margin-bottom: 10px;
+
+    transition: 0.3s;
+
+}
+
+
+.tool-btn:hover {
+
+    transform: translateY(-3px);
+
+}
+
+
+/* PRIMARY BUTTON */
+
+.tool-btn-primary {
+
+    background: #4f46e5;
+
+    color: #ffffff;
+
+}
+
+
+/* SUCCESS BUTTON */
+
+.tool-btn-success {
+
+    background: #16a34a;
+
+    color: #ffffff;
+
+}
+
+
+/* DANGER BUTTON */
+
+.tool-btn-danger {
+
+    background: #dc2626;
+
+    color: #ffffff;
+
+}
+
+
+/* RESULT BOX */
+
+.result-box {
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    word-break: break-word;
+
+}
+
+
+/* FILE DROP AREA */
+
+.upload-area {
+
+    border: 2px dashed rgba(255,255,255,0.20);
+
+    border-radius: 20px;
+
+    padding: 40px 20px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+.upload-area:hover {
+
+    transform: scale(1.01);
+
+}
+
+
+/* IMAGE PREVIEW */
+
+.preview-image {
+
+    max-width: 100%;
+
+    border-radius: 18px;
+
+    margin-top: 20px;
+
+}
+
+
+/* STATS GRID */
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px,1fr)
+        );
+
+    gap: 16px;
+
+    margin-top: 25px;
+
+}
+
+
+/* STAT CARD */
+
+.stat-card {
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+}
+
+
+/* RANGE SLIDER */
+
+.tool-range {
+
+    width: 100%;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* TOOL TITLE */
+
+.tool-title {
+
+    text-align: center;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* TOOL DESCRIPTION */
+
+.tool-description {
+
+    text-align: center;
+
+    opacity: 0.8;
+
+    margin-bottom: 30px;
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .tool-card-box {
+
+        padding: 20px;
+
+    }
+
+    .tool-btn {
+
+        width: 100%;
+
+        margin-right: 0;
+
+    }
+
+}
