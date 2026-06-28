@@ -1,1 +1,0 @@
-console.log("Promax Tools Hub Loaded");
