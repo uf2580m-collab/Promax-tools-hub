@@ -1,0 +1,18 @@
+# =====================================================
+# ProMax Tools Hub
+# robots.txt
+# =====================================================
+
+User-agent: *
+
+# Allow all public pages
+Allow: /
+
+# Block internal/system folders if added in future
+Disallow: /assets/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
+
+# Sitemap
+Sitemap: https://your-domain.com/sitemap.xml
